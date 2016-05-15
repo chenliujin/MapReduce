@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.Text; 
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class AccessLogMapper extends Mapper<LongWritable, Text, Text, IntWritable> 
+public class AccessLogMapper extends Mapper<LongWritable, Text, NullWritable, Text> 
 {
 	/**
 	 * @site http://www.chenliujin.com
@@ -19,7 +19,7 @@ public class AccessLogMapper extends Mapper<LongWritable, Text, Text, IntWritabl
 		try {
 			AccessLog access_log = AccessLog.parse(value.toString());
 
-			System.out.println(access_log.getRemoteAddr());
+			context.write(NullWritable.get(), new Text(access_log.toString()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

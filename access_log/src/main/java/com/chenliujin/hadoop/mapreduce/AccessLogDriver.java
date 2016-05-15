@@ -3,6 +3,7 @@ package com.chenliujin.hadoop.mapreduce;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -34,7 +35,8 @@ public class AccessLogDriver extends Configured implements Tool
 		FileOutputFormat.setOutputPath( job, new Path(args[1]) );
 
 		job.setMapperClass(AccessLogMapper.class);
-		job.setOutputKeyClass(LongWritable.class);
+		job.setNumReduceTasks(0);
+		job.setOutputKeyClass(NullWritable.class);
 		job.setOutputValueClass(Text.class);
 
 		return job.waitForCompletion(true) ? 0 : 1;

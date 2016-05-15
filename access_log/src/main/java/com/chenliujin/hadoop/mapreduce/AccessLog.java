@@ -124,4 +124,19 @@ public class AccessLog
 		}
 	}
 
+	/**
+	 * @site http://www.chenliujin.com
+	 * @author chenliujin <liujin.chen@qq.com>
+	 * @since 2016-05-16
+	 */
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(this.time_local + "|");
+		sb.append(this.remote_addr + "|");
+
+		return sb.toString();
+	}
+
 }
