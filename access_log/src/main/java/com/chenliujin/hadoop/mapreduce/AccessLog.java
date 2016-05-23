@@ -14,6 +14,7 @@ public class AccessLog
 	private String http_referer;
 	private String http_user_agent;
 	private String status;
+	private String request_time;
 
 	/**
 	 * @site http://www.chenliujin.com
@@ -26,12 +27,13 @@ public class AccessLog
 
 		AccessLog access_log = new AccessLog();
 
-		access_log.setTimeLocal(arr[5]);
 		access_log.setRemoteAddr(arr[0]);
+		access_log.setTimeLocal(arr[5]);
 		access_log.setRequest(arr[6]);
+		access_log.setStatus(arr[7]);
 		access_log.setHttpReferer(arr[10]);
 		access_log.setHttpUserAgent(arr[11]);
-		access_log.setStatus(arr[7]);
+		access_log.setRequestTime(arr[14]);
 
 		access_log.filterRemoteAddr();
 
@@ -93,6 +95,16 @@ public class AccessLog
 	/**
 	 * @site http://www.chenliujin.com
 	 * @author chenliujin <liujin.chen@qq.com>
+	 * @since 2016-05-25
+	 */
+	public void setRequestTime(String request_time)
+	{
+		this.request_time = request_time;
+	}
+
+	/**
+	 * @site http://www.chenliujin.com
+	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-05-15
 	 */
 	public void setStatus( String status )
@@ -141,6 +153,10 @@ public class AccessLog
 		sb.append(this.time_local);
 		sb.append("|").append(this.remote_addr);
 		sb.append("|").append(this.request);
+		sb.append("|").append(this.status);
+		sb.append("|").append(this.http_referer);
+		sb.append("|").append(this.http_user_agent);
+		sb.append("|").append(this.request_time);
 
 		return sb.toString();
 	}
