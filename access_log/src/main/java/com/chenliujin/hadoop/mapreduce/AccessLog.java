@@ -1,7 +1,10 @@
 package com.chenliujin.hadoop.mapreduce;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Arrays;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class AccessLog
 {
@@ -40,9 +43,11 @@ public class AccessLog
 	 * @author chenliujin <liujin.chen@qq.com>
 	 * @since 2016-05-15
 	 */
-	public void setTimeLocal( String time_local )
+	public void setTimeLocal(String time_local) throws ParseException
 	{
-		this.time_local = time_local;
+		Date date = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z").parse(time_local);
+		
+		this.time_local = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 	}
 
 	/**
@@ -133,8 +138,9 @@ public class AccessLog
 	{
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(this.time_local + "|");
-		sb.append(this.remote_addr + "|");
+		sb.append(this.time_local);
+		sb.append("|").append(this.remote_addr);
+		sb.append("|").append(this.request);
 
 		return sb.toString();
 	}
