@@ -2,12 +2,14 @@ package com.chenliujin.hadoop.mapreduce;
 
 import java.io.IOException;
 
-import org.apache.hadoop.io.Text; 
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class AccessLogMapper extends Mapper<LongWritable, Text, NullWritable, Text> 
+import com.chenliujin.hadoop.mapreduce.AccessLog;
+
+public class AccessLogMapper extends Mapper<LongWritable, Text, NullWritable, Text>
 {
 	/**
 	 * @site http://www.chenliujin.com

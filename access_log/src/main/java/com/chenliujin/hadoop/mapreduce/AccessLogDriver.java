@@ -11,6 +11,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
+import com.chenliujin.hadoop.mapreduce.AccessLogMapper;
+
 public class AccessLogDriver extends Configured implements Tool
 {
 	/**
